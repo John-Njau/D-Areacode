@@ -1,0 +1,30 @@
+{% extends "base.html"  %}
+{% load static %}
+{% block content %}
+{% include 'main/navbar.html' %}
+<main class="container">
+<div class="business-box d-flex flex-wrap">
+{% for business in businesses %}
+{% if business.neighborhood.name == 'Chester Court' %}
+{% endif %}
+<div class="card mb-4 m-3">
+    <div class="card-body">
+        <h5 class="card-title">{{ business.name }}</h5>
+        <p class="card-text">{{ business.description }}</p>
+        <a href="{{ business.email }}" class="">{{ business.email }}</a> <br>
+        
+        <div>
+            <p>{{business.neighborhood.name}}</p>
+        </div>
+        
+        <a href="" class="btn btn-dark btn-sm">
+            <i class="fa fa-info-circle"></i>
+            More Info
+        </a>
+    </div>
+</div>
+
+{% endfor %}
+</div>
+{% endblock %}
+</main>
