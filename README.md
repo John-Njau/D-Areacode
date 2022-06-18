@@ -33,7 +33,7 @@ Change My neighborhood when I decide to move out.
 
 - clone the repo: <br>
   git clone` https://github.com/John-Njau/D-Areacode`
-- `cd Photo-Gallery`
+- `cd D-Areacode`
 - create virtual environment <br>
   `python -m venv virtual`
 - To activate the virtual environment <br>
