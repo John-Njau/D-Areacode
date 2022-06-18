@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Akshar:wght@300&family=Koulen&family=Macondo&family=Montserrat:wght@200;500&family=Nunito+Sans:wght@200&family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;1,300&family=Raleway:ital,wght@0,300;0,500;1,200&display=swap');
+
+body {
+  /* background-color: #9D7724; */
+   background-color: #E6E6EF;
+   font-family: 'Open Sans', sans-serif;
+   font-size: 14px;
+   font-weight:500;
+   --webkit-font-smoothing: antialiased;
+   /* font-family: 'Akshar', sans-serif; */
+   /* font-family: 'Koulen', cursive; */
+   /* font-family: 'Macondo', cursive; */
+   /* font-family: 'Montserrat', sans-serif; */
+   /* font-family: 'Nunito Sans', sans-serif; */
+   /* font-family: 'Pacifico', cursive; */
+   font-family: 'Poppins', sans-serif;
+   /* font-family: 'Raleway', sans-serif; */
+}
+
+#signin-box {
+  width: 400px;
+  height: 400px;
+  margin: 64px auto;
+  border-radius: 20px;
+  background-color:#E6E6EF;
+}
+
+#registration-box {
+  width: 400px;
+  /* height: 400px; */
+  /* background-color: #0B080C;
+   */
+   background-color:#E6E6EF;
+  margin: auto;
+  margin: 64px auto;
+  border-radius: 20px;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+.b-example-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid rgba(0, 0, 0, 0.15);
+  border-width: 1px 0;
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+}
+
+.b-example-vr {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 64vh;
+}
+
+.bi {
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.services {
+  width: 80vw;
+  /* background-color: rgba(173, 9, 9, 0.5); */
+  margin: auto auto;
+  /* margin-top: 64px; */
+  margin-bottom: 64px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.service-box {
+  /* width: 400px; */
+  /* height: 300px; */
+  /* background-color: rgba(177, 164, 164, 0.5); */
+  /* margin-top: 64px; */
+  /* margin-bottom: 100px; */
+  margin: 10px auto;
+}
+
+.intro {
+  /* width: 402px; */
+  width: 600px; 
+  /* height: 306px; */
+  margin:20px auto;
+  background-color: none;
+
+}
