@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% block content %}
+{% include 'main/navbar.html' %}
+<div class="container">
+    <div class="row">
+        {% if neighborhoods %}
+        <h2>Found {{ neighborhoods|length }} neighborhoods with '{{message}}' keyword</h2>
+        {%else %}
+        <h2>Found {{ neighborhoods|length }} neighborhoods with '{{message}}' keyword</h2>
+        {% endif %}
+    </div>
+    <div class="row">
+        {% if neighborhoods %}
+        {% for neighborhood in neighborhoods %}
+        <div class="col-sm-6 col-md-3">
+            <h1>{{neighborhood.name}}</h1>
+            <img src="{{neighborhood.image.url}}" alt="" class="img-fluid">
+            <a class="btn btn-light m-3" role="button"
+                href="neighborhood/details/{{ neighborhood.id }}">Details</a>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
