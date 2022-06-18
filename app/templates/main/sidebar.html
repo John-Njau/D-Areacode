@@ -1,0 +1,41 @@
+{% extends "base.html"  %}
+{% load static %}
+{% block content %}
+<div class="flex-shrink-0 p-3 text-center">
+    <p>{{request.user.profile.neighborhood.name}}</p>
+    <div>
+        <i class="fa-solid fa-toggle-on"></i>
+        <hr />
+        {% if request.user.profile.profile_pic %}
+        <img src="{{request.user.profile.profile_pic.url}}" class='rounded-circle' alt="profile image"
+            style="width:100px; height:100px">
+        {% else %}
+        <i class="fa-solid fa-circle-user h1"></i>
+        {% endif %}
+        <br>
+        <span class="fs-5 fw-semibold text-dark">@{{user.username}}</span> <br>
+    </div>
+    <ul class="list-unstyled ps-0">
+        
+        <!-- <div class="post">
+            <button class="btn btn-light m-2 btn-sm" id="post-btn1">New Post</button> <br>
+        </div> -->
+        <li class="border-top my-3"></li>
+        <li class="mb-1">
+            <a href="{% url 'profile' user.username %}">
+                <button class="btn btn-sm btn-dark m-3 btn-toggle align-items-center "
+                    data-bs-target="#account-collapse" aria-expanded="false">
+                    <i class="fa fa-user"></i>
+
+                </button></a> <br>
+            <a href="/logout">
+                <button class="btn btn-sm btn-dark btn-toggle m-2 align-items-center "
+                    data-bs-target="#account-collapse" aria-expanded="false">
+
+                    <i class="fas fa-sign-out-alt"></i>
+                </button></a>
+
+        </li>
+    </ul>
+</div>
+{% endblock %}
