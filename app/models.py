@@ -2,9 +2,30 @@ from django.db import models
 
 from django.contrib.auth.models import User
 
+from cloudinary.models import CloudinaryField
+
+import datetime as dt
+
 # Create your models here.
+class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    post = models.TextField()
+    image = CloudinaryField('photo', null=True, blank=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+   
+
+    def __str__(self):
+        return self.post
+    
+    class Meta:
+        ordering = ('-created_on',)
+        
+    @classmethod
+    def search_post(cls, search_term):
+        results = cls.objects.filter(name__icontains=search_term)
+        return results
+    
 class Neighborhood(models.Model):
-    admin = models.ForeignKey(User, related_name='neighborhood_admin', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     occupants_count = models.IntegerField()
@@ -16,9 +37,11 @@ class Neighborhood(models.Model):
     
     def delete_neighborhood(self):
         self.delete()
-        
-    def find_neighborhood(self, neighborhood_id):
-        return Neighborhood.objects.get(id=neighborhood_id)
+    
+    @classmethod
+    def find_neighborhood(cls, search_term):
+        results = cls.objects.filter(name__icontains=search_term)
+        return results
     
     def update_neighborhood(self, name, location, occupants_count):
         self.name = name
@@ -39,9 +62,20 @@ class Neighborhood(models.Model):
     def __str__(self):
         return self.name
     
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
+    bio = models.TextField(max_length=500, blank=True)
+    profile_pic = CloudinaryField('image', default='https://res.cloudinary.com/dkxq0qjqb/image/upload/v1624098981/default_avatar_qjqjq.png')
     
+    def __str__(self):
+        return self.user.username
+    
+    # def get_absolute_url(self):
+    #     return reverse('profile', args=[str(self.id)])
+    
+
 class Business(models.Model):
-    user = models.ForeignKey(User, related_name='business_user', on_delete=models.CASCADE)
     neighborhood = models.ForeignKey(Neighborhood, related_name='business_neighborhood', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255)
@@ -62,11 +96,10 @@ class Business(models.Model):
         self.save()
     
     @classmethod
-    def find_business(cls, business_id):
-        businesses = cls.objects.filter(name__icontains=business_id)
+    def find_business(cls, search_term):
+        businesses = cls.objects.filter(name__icontains=search_term)
         return businesses
     
     
     def __str__(self):
         return self.name
-    
