@@ -2,9 +2,14 @@ from django.db import models
 
 from django.contrib.auth.models import User
 
+
+from django.db.models.signals import post_save
+from django.core.exceptions import ObjectDoesNotExist
 from cloudinary.models import CloudinaryField
 
 import datetime as dt
+
+from django.dispatch import receiver
 
 # Create your models here.
 class Post(models.Model):
@@ -50,6 +55,7 @@ class Neighborhood(models.Model):
         self.save()
     
     def get_occupants_count(self):
+        
         return self.occupants_count
     
     def update_occupants(self, occupants_count):
@@ -64,12 +70,27 @@ class Neighborhood(models.Model):
     
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
+    neighborhood = models.ForeignKey(Neighborhood,default=1, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
     profile_pic = CloudinaryField('image', default='https://res.cloudinary.com/dkxq0qjqb/image/upload/v1624098981/default_avatar_qjqjq.png')
     
     def __str__(self):
-        return self.user.username
+        return f'{self.user.username} profile'
+    
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+            
+            
+            
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        try:
+            instance.profile.save()
+        except ObjectDoesNotExist:
+            Profile.objects.create(user=instance)
+        
     
     # def get_absolute_url(self):
     #     return reverse('profile', args=[str(self.id)])
@@ -103,3 +124,35 @@ class Business(models.Model):
     
     def __str__(self):
         return self.name
+    
+    
+class SocialAmenities(models.Model):
+    neighborhood = models.ForeignKey(Neighborhood, related_name='amenity', on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)
+    description = models.TextField(max_length=1000)
+    location = models.CharField(max_length=255)
+    
+    def create_amenity(self):
+        self.save()
+        
+    def delete_amenity(self, amenity_name, amenity_email):
+        self.name = amenity_name
+        self.email = amenity_email
+        self.delete()
+        
+    def update_amenity(self, amenity_name, amenity_email):
+        self.name = amenity_name
+        self.email = amenity_email
+        self.save()
+    
+    @classmethod
+    def find_amenity(cls, search_term):
+        amenityes = cls.objects.filter(name__icontains=search_term)
+        return amenityes
+    
+    
+    def __str__(self):
+        return self.name
+    
+    
