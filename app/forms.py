@@ -8,7 +8,6 @@ from django.forms.widgets import TextInput, FileInput, URLInput, EmailInput, Pas
 from .models import User, Profile, Post
 
 
-
 class SignupForm(UserCreationForm):
     full_name = forms.CharField(max_length=230)
     mobile = forms.CharField(max_length=230, widget=forms.TextInput(attrs={'type': 'number'}))
@@ -37,11 +36,13 @@ class UpdateUserForm(forms.ModelForm):
         model = User
         fields = ('username', 'email')
         
+        
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['post', 'image']
+        
         widgets ={
-            'post': Textarea(attrs={'class': 'form-control', 'placeholder': 'Update Content'}),
+            'post': Textarea(attrs={'class': 'form-control', 'placeholder': 'What\'s up in your hood? ' }),
             'image': FileInput(attrs={'class': 'form-control'}),
         }
