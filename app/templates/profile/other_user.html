@@ -10,27 +10,21 @@
                     <hr>
                     <h2><strong>Profile</strong></h2>
                     {% if user.profile %}
-                    {% if request.user.profile.profile_pic %}
-                    <img src="{{request.user.profile.profile_pic.url}}" class='rounded-circle' alt="profile image"
+                    {% if user.profile.profile_pic %}
+                    <img src="{{user.profile.profile_pic.url}}" class='rounded-circle' alt="profile image"
                         style="width:100px; height:100px">
                     {% else %}
                     <i class="fa-solid fa-circle-user h1"></i>
                     {% endif %}
 
-                    <!-- <p><span><strong>Username</strong></span>: {{user.username}}</p> -->
-                    <p><span><strong>Username</strong></span>: {{request.user.username}}</p>
+                    <p><span><strong>Username</strong></span>: {{user.username}}</p>
+                    <!-- <p>Newww</p> -->
+                    <!-- <p><span><strong>Username</strong></span>: {{request.user.username}}</p> -->
+                    <p><span><strong>Bio:</strong></span> {{user.profile.bio}} </p>
+                    <p><span><strong>email</strong></span>: {{user.email}} </p>
 
-                    <p><span><strong>Bio:</strong></span> {{request.user.profile.bio}} </p>
-                    <p><span><strong>email</strong></span>: {{request.user.email}} </p>
-                    <div class="upload m-3">
-                        <a href="{% url 'updateprofile' user.username %}" class="btn btn-primary btn-sm">Update profile
-                            info</a>
-                    </div>
                     {%else %}
-                    <div class="upload m-3">
-                        <a href="{% url 'updateprofile' user.username %}" class="btn btn-primary btn-sm">Add profile
-                            info</a>
-                    </div>
+
                     <hr>
                     {% endif %}
 
@@ -53,16 +47,14 @@
 
                         {% else %}
                         <p>No contact information</p>
-                        <div class="upload m-3">
-                            <a href="" class="btn btn-primary btn-sm">Add Contact Info</a>
-                        </div>
+
                         {% endif %}
 
                     </div>
                 </div>
 
                 <div class="col-sm-12 col-md-6 col-lg-6 mt-4">
-                    <h1 class="text-center">My posts</h1>
+                    <h1 class="text-center">{{user}}'s posts</h1>
                     {{user}}
                     {{posts}}
                     <div>
@@ -88,13 +80,11 @@
 
                                 </p>
                             </p>
-
                             <!-- <p>
                                 <a class="float-left btn btn-dark btn-sm"
                                     href="">post Details</a>
                                 <a class="float-right btn btn-dark btn-sm" href="{{post.url}}">View post</a>
                             </p> -->
-
                         </div>
                         <hr>
                         {% endfor %}
@@ -103,10 +93,7 @@
                         <p>No posts</p>
                         {% endif %}
 
-                        <div class="upload mt-5 text-center">
-                            <a href="{% url 'home' user.profile.neighborhood.id %}"
-                                class="btn btn-primary btn-sm">Post</a>
-                        </div>
+
                         <hr class="mt-2">
                     </div>
                 </div>
