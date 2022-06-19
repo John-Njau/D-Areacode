@@ -1,0 +1,7 @@
+env/
+.env
+__pycache__/
+unused.html
+.DS_Store
+todo.txt
+.vscode/
