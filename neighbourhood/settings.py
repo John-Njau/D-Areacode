@@ -38,7 +38,9 @@ cloudinary.config(
 # SECURITY WARNING: don't run with debug turned on in production!
 MODE = config("MODE", default="dev")
 DEBUG = config("DEBUG", default=False, cast=bool)
-SECRET_KEY = config("SECRET_KEY")
+# SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY='wx$=#1u%*5lmh!c#yhuk7m1i$xfn!o3z54*@bmwiqby&azsv(!'
+
 
 
 # Email configurations remember to install python-decouple
