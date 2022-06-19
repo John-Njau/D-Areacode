@@ -1,0 +1,41 @@
+{% extends "base.html"  %}
+{% load static %}
+{% block content %}
+{% include 'main/navbar.html' %}
+<main class="container-fluid">
+    <div class="amenity-box d-flex flex-wrap">
+       
+        {% if amenities %}
+
+        {% for amenity in amenities %}
+        {% if amenity.neighborhood.name == 'Chester Court' %}
+        {% endif %}
+        <div class="card mb-4 m-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ amenity.name }}</h5>
+                <p class="card-text">{{ amenity.description }}</p>
+                <a href="{{ amenity.email }}" class="">{{ amenity.email }}</a> <br>
+
+                <div>
+                    <p>{{amenity.neighborhood.name}}</p>
+                </div>
+                <p><i class="fa-solid fa-location-dot"></i> {{ amenity.location }}</p>
+
+                <a href="" class="btn btn-dark btn-sm">
+                    <i class="fa fa-info-circle"></i>
+                    More Info
+                </a>
+            </div>
+        </div>
+
+        {% endfor %}
+        {% else %}
+        <div class="card mb-4 m-3">
+            <div class="card-body">
+                <h5 class="card-title">No amenities found</h5>
+                <p class="card-text">Sorry, no amenities were found in your neighborhood.</p>
+            </div>
+        </div>
+        {% endif %}
+        {% endblock %}
+</main>

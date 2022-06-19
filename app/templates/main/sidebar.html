@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="flex-shrink-0 p-3 text-center">
-    <p>{{request.user.profile.neighborhood.name}}</p>
+    <p>{{neighborhood.name}}</p>
     <div>
         <i class="fa-solid fa-toggle-on"></i>
         <hr />
@@ -14,9 +14,11 @@
         {% endif %}
         <br>
         <span class="fs-5 fw-semibold text-dark">@{{user.username}}</span> <br>
+        <p class=""><small class=""> Bio:</small><strong> <small>{{user.profile.bio}}</small> </strong>
+        </p>
     </div>
     <ul class="list-unstyled ps-0">
-        
+
         <!-- <div class="post">
             <button class="btn btn-light m-2 btn-sm" id="post-btn1">New Post</button> <br>
         </div> -->
@@ -25,14 +27,14 @@
             <a href="{% url 'profile' user.username %}">
                 <button class="btn btn-sm btn-dark m-3 btn-toggle align-items-center "
                     data-bs-target="#account-collapse" aria-expanded="false">
-                    <i class="fa fa-user"></i>
+                    Profile <i class="fa fa-user"></i>
 
                 </button></a> <br>
             <a href="/logout">
                 <button class="btn btn-sm btn-dark btn-toggle m-2 align-items-center "
                     data-bs-target="#account-collapse" aria-expanded="false">
 
-                    <i class="fas fa-sign-out-alt"></i>
+                    Log Out <i class="fas fa-sign-out-alt"></i>
                 </button></a>
 
         </li>
