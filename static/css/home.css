@@ -115,3 +115,25 @@ body {
   background-color: none;
 
 }
+
+.name{
+  font-size: 70px;
+  font-weight: 700;
+  color: #0B080C;
+/* font-family: 'Akshar', sans-serif; */
+   /* font-family: 'Koulen', cursive; */
+   /* font-family: 'Macondo', cursive; */
+   /* font-family: 'Montserrat', sans-serif; */
+   /* font-family: 'Nunito Sans', sans-serif; */
+   /* font-family: 'Pacifico', cursive; */
+   /* font-family: 'Poppins', sans-serif; */
+   /* font-family: 'Raleway', sans-serif; */
+  /* text-align: center; */
+}
+
+.btn-start{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin: 16px 10px;
+}
