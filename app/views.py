@@ -9,7 +9,7 @@ from itertools import chain
 from django.contrib.auth.decorators import login_required
 
 from .models import Neighborhood, User, Profile, Business, Post, SocialAmenities
-from .forms import UpdateProfileForm, SignupForm, PostForm, UpdateUserForm
+from .forms import UpdateProfileForm, SignupForm, PostForm, UpdateUserForm, NeighborhoodForm,SocialAmenitiesForm, BusinessForm
 from .email import send_welcome_email
 
 
@@ -119,9 +119,18 @@ def updateprofile(request, username):
 @login_required(login_url='/accounts/login/')               
 def neighborhood(request):
     neighborhoods = Neighborhood.objects.all()
+    if request.method == 'POST':
+        form = NeighborhoodForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('neighborhood')
+        
+    else:
+        form = NeighborhoodForm()
     
     params = {
-        'neighborhoods': neighborhoods
+        'neighborhoods': neighborhoods,
+        'form': form,
     }
     return render(request, 'main/select_hood.html', params)
 
@@ -129,11 +138,23 @@ def neighborhood(request):
 
 @login_required(login_url='/accounts/login/')
 def businesses(request, neighborhood_id):
+    # neighborhood_name = Neighborhood.objects.get(id=neighborhood_id)
     neighborhood = get_object_or_404(Neighborhood, pk=neighborhood_id)
     businesses = Business.objects.filter(neighborhood=neighborhood)
     
+    if request.method == 'POST':
+        form = BusinessForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('businesses', neighborhood.id)
+        
+    else:
+        form = BusinessForm()
+    
     params = {
-        'businesses': businesses
+        'businesses': businesses,
+        'form': form,
+        # 'neighborhood_name': neighborhood_name,
     }
     return render(request, 'main/businesses.html', params)
 
@@ -142,7 +163,17 @@ def social_amenities(request, neighborhood_id):
     neighborhood = get_object_or_404(Neighborhood, pk=neighborhood_id)
     amenities=SocialAmenities.objects.filter(neighborhood=neighborhood)
     
+    if request.method == 'POST':
+        form = SocialAmenitiesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('social_amenities', neighborhood.id)
+        
+    else:
+        form = SocialAmenitiesForm()
+    
     params = {
+        'form': form,
         'amenities': amenities
     }
     return render(request, 'main/social_amenities.html', params)
