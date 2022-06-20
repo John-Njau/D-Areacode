@@ -2,10 +2,43 @@ from django import forms
 
 
 from django.contrib.auth.forms import UserCreationForm
-from django.forms.widgets import TextInput, FileInput, URLInput, EmailInput, PasswordInput, NumberInput, DateInput, TimeInput, CheckboxInput, Select, RadioSelect, Textarea
+from django.forms.widgets import TextInput, FileInput, NumberInput, Textarea
 
 
-from .models import User, Profile, Post
+from .models import User, Profile, Post, Neighborhood, SocialAmenities, Business
+
+
+class SocialAmenitiesForm(forms.ModelForm):
+    class Meta:
+        model = SocialAmenities
+        fields = ('name', 'email', 'description', 'location','neighborhood')
+        
+        widgets = {
+            'name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
+            'email': TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'description': TextInput(attrs={'class': 'form-control', 'placeholder': 'Description'}),
+            'location': TextInput(attrs={'class': 'form-control', 'placeholder': 'Location'}),
+        }
+
+
+class NeighborhoodForm(forms.ModelForm):
+    class Meta:
+        model = Neighborhood
+        fields = ('name', 'location', 'occupants_count')
+        widgets = {
+            'name': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your neighborhood name'
+            }),
+            'location': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your neighborhood location'
+            }),
+            'occupants_count': NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your neighborhood occupants count'
+            }),
+        }
 
 
 class SignupForm(UserCreationForm):
@@ -34,7 +67,7 @@ class UpdateUserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email')
+        fields = ('email',)
         
         
 class PostForm(forms.ModelForm):
@@ -45,4 +78,16 @@ class PostForm(forms.ModelForm):
         widgets ={
             'post': Textarea(attrs={'class': 'form-control', 'placeholder': 'What\'s up in your hood? ' }),
             'image': FileInput(attrs={'class': 'form-control'}),
+        }
+        
+        
+class BusinessForm(forms.ModelForm):
+    class Meta:
+        model = Business
+        fields = ['name', 'email', 'description', 'neighborhood']
+        
+        widgets = {
+            'name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
+            'email': TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'description': TextInput(attrs={'class': 'form-control', 'placeholder': 'Description'}),
         }
