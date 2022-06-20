@@ -38,7 +38,7 @@ cloudinary.config(
 # SECURITY WARNING: don't run with debug turned on in production!
 MODE = config("MODE", default="dev")
 DEBUG = config("DEBUG", default=False, cast=bool)
-# SECRET_KEY = config("SECRET_KEY")
+# SECRET_KEY=config("SECRET_KEY")
 SECRET_KEY='wx$=#1u%*5lmh!c#yhuk7m1i$xfn!o3z54*@bmwiqby&azsv(!'
 
 
@@ -48,7 +48,8 @@ EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = 'Chester01#'
+# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = 'vrfllbtzlkwyvgwk'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent

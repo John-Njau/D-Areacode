@@ -8,15 +8,17 @@
             <h1 class="lead text-center mt-5">Update profile
                 {{current_user}}
             </h1>
-            <div class="form m-3">
+            <div class="form m-3 bg-light p-5">
                 <form action="{% url 'updateprofile' user.username %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{user_form|crispy}}
                     <div class="mb-3">
-                        <p class="lead"></p>
+                        <strong class="strong">New Profile Picture</strong>
                         {{form.profile_pic}}
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 mt-3">
+                        <strong class="strong">New Bio</strong>
+
                         {{form.bio}}
                     </div>
                     <p class="fs-3">{{ form.errors }}</p>

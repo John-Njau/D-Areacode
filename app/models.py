@@ -84,12 +84,12 @@ class Profile(models.Model):
             
             
             
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
-        try:
-            instance.profile.save()
-        except ObjectDoesNotExist:
-            Profile.objects.create(user=instance)
+    # @receiver(post_save, sender=User)
+    # def save_user_profile(sender, instance, **kwargs):
+    #     try:
+    #         instance.profile.save()
+    #     except ObjectDoesNotExist:
+    #         Profile.objects.create(user=instance)
         
     
     # def get_absolute_url(self):

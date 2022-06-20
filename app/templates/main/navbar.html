@@ -9,7 +9,7 @@
                 
                 <i class="fa-solid fa-earth-africa h3"></i>
             </a>
-            <a class="py-2 d-block d-md-inline-block" href="{% url 'home' user.profile.neighborhood.id %}">Posts</a>
+            <a class="py-2 d-block btn d-md-inline-block" href="{% url 'home' user.profile.neighborhood.id %}">Posts</a>
             <form class="form-inline my-2 my-lg-0 py-2 d-block d-md-inline-block" action="/search">
                 <div class="input-group">
                     <input name="query" type="text" class="" placeholder="search" />
@@ -18,8 +18,8 @@
                     </div>
                 </div>
             </form>
-            <a class="py-2 d-block d-md-inline-block" href="{% url 'businesses' user.profile.neighborhood.id %}">Businesses</a>
-            <a class="py-2 d-block d-md-inline-block" href="{% url 'social_amenities' user.profile.neighborhood.id %}">Social Amenities</a>
+            <a class="py-2 d-block btn d-md-inline-block" href="{% url 'businesses' user.profile.neighborhood.id %}">Businesses</a>
+            <a class="py-2 d-block btn d-md-inline-block" href="{% url 'social_amenities' user.profile.neighborhood.id %}">Social Amenities</a>
 
             
         </nav>

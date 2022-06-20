@@ -24,7 +24,7 @@ class UpdateProfileForm(forms.ModelForm):
         fields = ['profile_pic', 'bio']
         
         widgets ={
-            'profile_pic': FileInput(attrs={'class': 'form-control'}),
+            'profile_pic': FileInput(attrs={'class': 'form-control', 'placeholder': 'Profile Picture'}),
             'bio': TextInput(attrs={'class': 'form-control', 'placeholder': 'Update Bio'}),
         }
         

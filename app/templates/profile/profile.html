@@ -65,12 +65,12 @@
                     <h1 class="text-center">My posts</h1>
                     {{user}}
                     {{posts}}
-                    <div>
+                    <div class="">
                         <p> User has {{user.posts.all | length}} posts</p>
                         <hr>
                         {% if user.posts %}
                         {% for post in user.posts.all %}
-                        <div class="mb-5">
+                        <div class="mb-5 card p-2">
                             <strong>{{post.post}}</strong>
 
                             <!-- <p>{{post.user.username}}</p> -->

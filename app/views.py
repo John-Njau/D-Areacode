@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Neighborhood, User, Profile, Business, Post, SocialAmenities
 from .forms import UpdateProfileForm, SignupForm, PostForm, UpdateUserForm
+from .email import send_welcome_email
+
 
 # Create your views here.
 
