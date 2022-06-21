@@ -22,7 +22,9 @@ def index(request):
 @login_required(login_url='/accounts/login/')
 def home(request, neighborhood_id):
     neighborhood = get_object_or_404(Neighborhood, pk=neighborhood_id)
-    posts = Post.objects.all()
+    businesses = Business.objects.filter(neighborhood=neighborhood)
+    posts = Post.objects.filter(neighborhood=neighborhood)
+    
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -36,8 +38,10 @@ def home(request, neighborhood_id):
         
     params = {
         'posts': posts,
+       
         'form': form,
         'neighborhood': neighborhood,
+        'businesses':businesses
     }
     return render(request, 'main/home.html', params)
 
@@ -138,8 +142,8 @@ def neighborhood(request):
 
 @login_required(login_url='/accounts/login/')
 def businesses(request, neighborhood_id):
-    # neighborhood_name = Neighborhood.objects.get(id=neighborhood_id)
-    neighborhood = get_object_or_404(Neighborhood, pk=neighborhood_id)
+    neighborhood = Neighborhood.objects.get(id=neighborhood_id)
+    # neighborhood = get_object_or_404(Neighborhood, pk=neighborhood_id)
     businesses = Business.objects.filter(neighborhood=neighborhood)
     
     if request.method == 'POST':

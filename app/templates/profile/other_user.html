@@ -70,16 +70,16 @@
                                 <img src="{{post.image.url}}" class="img-fluid" alt=""
                                     style="height:240px; border-radius:10px;">
                             </p>
-                            <p>
-                                <p class="text-muted float-right">
-                                    <small class="card-text fw-3 "><i class="fa-solid fa-clock"></i>
-                                        <strong>{{post.created_on|time}}
-                                            {{post.created_on|timesince}} ago
-                                        </strong>
-                                    </small>
 
-                                </p>
+                            <p class=" float-right">
+                                <small class="card-text fw-3 "><i class="fa-solid fa-clock"></i>
+                                    <strong>{{post.created_on|time}}
+                                        {{post.created_on|timesince}} ago
+                                    </strong>
+                                </small>
+
                             </p>
+
                             <!-- <p>
                                 <a class="float-left btn btn-dark btn-sm"
                                     href="">post Details</a>

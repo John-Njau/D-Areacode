@@ -17,6 +17,10 @@ body {
    /* font-family: 'Raleway', sans-serif; */
 }
 
+.text-muted{
+  display: none;
+}
+
 #signin-box {
   width: 400px;
   height: 400px;

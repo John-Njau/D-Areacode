@@ -4,10 +4,17 @@
 <main>
     <section>
         <div class="container-fluid">
+            <!-- back -->
+            
             <div class="row">
+                
                 <div class="col-sm-12 col-md-6 col-lg-6 mb-5 text-center">
 
                     <hr>
+                    <a href="{% url 'home' user.profile.neighborhood.id %}">
+                        <i class="fa-solid fa-backward"></i>
+                        Home
+                    </a>
                     <h2><strong>Profile</strong></h2>
                     {% if user.profile %}
                     {% if request.user.profile.profile_pic %}
@@ -79,7 +86,7 @@
                                     style="height:240px; border-radius:10px;">
                             </p>
                             <p>
-                                <p class="text-muted float-right">
+                                <p class="text float-right">
                                     <small class="card-text fw-3 "><i class="fa-solid fa-clock"></i>
                                         <strong>{{post.created_on|time}}
                                             {{post.created_on|timesince}} ago

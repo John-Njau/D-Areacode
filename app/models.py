@@ -4,23 +4,6 @@ from django.db import models
 
 
 # Create your models here.
-class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
-    post = models.TextField()
-    image = CloudinaryField('photo', null=True, blank=True)
-    created_on = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.post
-
-    class Meta:
-        ordering = ('-created_on',)
-
-    @classmethod
-    def search_post(cls, search_term):
-        results = cls.objects.filter(name__icontains=search_term)
-        return results
-
 
 class Neighborhood(models.Model):
     occupants_count = models.IntegerField()
@@ -58,10 +41,29 @@ class Neighborhood(models.Model):
     def __str__(self):
         return self.name
 
+class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    post = models.TextField()
+    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE,related_name='neighborhood')
+    image = CloudinaryField('photo', null=True, blank=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.post
+
+    class Meta:
+        ordering = ('-created_on',)
+
+    @classmethod
+    def search_post(cls, search_term):
+        results = cls.objects.filter(name__icontains=search_term)
+        return results
+
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    neighborhood = models.ForeignKey(Neighborhood, default=1, on_delete=models.CASCADE)
+    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
     profile_pic = CloudinaryField('image',
                                   default='https://res.cloudinary.com/dkxq0qjqb/image/upload/v1624098981/default_avatar_qjqjq.png')
